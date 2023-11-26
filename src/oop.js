@@ -3,7 +3,19 @@
  * Если координаты не переданы - 0,0; Аналогично если только 1 координата.
  * Со звездочкой: реализовать метод, который возвращает расстояние от точки до центра координат (0, 0)
  */
-class Point {}
+class Point {
+ constructor(x, y) {
+  this.x = isNaN(x) ? 0 : x
+  this.y = isNaN(y) ? 0 : y
+ }
+ // Метод для вычисления длины вектора
+ // от начала координат до текущей точки
+ length() {
+  // теорема Пифагора для вычисления длины вектора
+  return Math.sqrt(Math.pow(this.x, 2) + Math.pow(this.y, 2))
+ }
+}
+
 
 /**
  * Напишите класс геометрической точки в трехмерном пространстве (x, y, z),
@@ -11,7 +23,14 @@ class Point {}
  * Реализовать статический метод, который возвращает расстояние между Point3D.
  */
 class Point3D extends Point {
-    static vectorLength(a, b) {}
+ constructor(x, y, z=0) {
+  super(x, y);
+  this.z = z; // конструктор 3д точки
+ }
+
+ static vectorLength(a, b) {
+  return Math.sqrt((a.x - b.x)**2 + (a.y-b.y)**2 + (a.z-b.z)**2);
+ }
 }
 
 /**
@@ -20,6 +39,20 @@ class Point3D extends Point {
  * Со звездочкой: написать тесты методы класса (oop.spec.js)
  */
 class Queue {
+ constructor(arr=[]) {
+  this.queue = arr;
+  this.size = arr.length;
+ }
+
+ pop() {
+  this.size--;
+  return this.queue.pop();
+ }
+
+ Enqueue(value) {
+  this.size++;
+  this.queue.push(value);
+ }
 
 }
 
